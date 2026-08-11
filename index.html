@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#120E0C">
+    <title>KRUPS - Descubre tu Match</title>
+    <link rel="icon" type="image/png" href="assets/images/krups.png">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app-container">
+        <div class="ambient-bg" aria-hidden="true">
+            <div class="ambient-glow glow-1"></div>
+            <div class="ambient-glow glow-2"></div>
+            <div class="ambient-particles"></div>
+        </div>
+
+        <!-- BLOQUEO -->
+        <section id="screen-lock" class="screen active" aria-label="Pantalla de bloqueo">
+            <button class="lock-screen-btn" type="button" onclick="unlockScreen()" aria-label="Toca para continuar">
+                <img src="assets/images/bloqueo.png" alt="" class="lock-screen-image">
+            </button>
+        </section>
+
+        <!-- HOME -->
+        <section id="screen-home" class="screen" aria-label="Inicio">
+            <div class="hero-bg" aria-hidden="true">
+                <img src="assets/images/coffee-hero.png" alt="" class="hero-image">
+                <div class="hero-overlay"></div>
+            </div>
+
+            <header>
+                <button class="logo-button logo-button-home" type="button" onclick="resetGame()" aria-label="Volver al inicio">
+                    <img src="assets/images/logo.png" alt="KRUPS" class="logo-img">
+                </button>
+            </header>
+
+            <main class="home-content staggered-entrance">
+                <div class="home-title-wrap stagger-item" aria-label="Descubre tu match">
+                    <span class="home-title-kicker">DESCUBRE</span>
+                    <h1 class="home-title-main">TU MATCH</h1>
+                    <span class="home-title-line" aria-hidden="true"></span>
+                </div>
+
+                <div class="mode-selection stagger-item">
+                    <button class="mode-card premium-card" type="button" onclick="selectGameMode('pet')">
+                        <div class="card-bg">
+                            <img src="assets/images/pet.png" alt="" class="card-image">
+                            <div class="card-gradient"></div>
+                        </div>
+                        <div class="card-content">
+                            <h2>¿QUÉ BEBIDA<br>ES TU PELUDO?</h2>
+                        </div>
+                    </button>
+
+                    <button class="mode-card premium-card" type="button" onclick="selectGameMode('person')">
+                        <div class="card-bg">
+                            <img src="assets/images/coffee-hero.png" alt="" class="card-image">
+                            <div class="card-gradient"></div>
+                        </div>
+                        <div class="card-content">
+                            <h2>¿QUÉ BEBIDA<br>ERES TÚ?</h2>
+                        </div>
+                    </button>
+                </div>
+            </main>
+        </section>
+
+        <!-- INTRO -->
+        <section id="screen-intro" class="screen" aria-label="Introducción">
+            <div class="intro-bg" aria-hidden="true">
+                <img id="intro-bg-image" src="assets/images/coffee-hero.png" alt="" class="intro-bg-image">
+                <div class="intro-overlay"></div>
+            </div>
+
+            <header class="screen-nav-header">
+                <button class="logo-button logo-button-small" type="button" onclick="resetGame()" aria-label="Volver al inicio">
+                    <img src="assets/images/logo.png" alt="KRUPS" class="logo-img small">
+                </button>
+            </header>
+
+            <main class="staggered-entrance intro-content">
+                <div class="intro-visual stagger-item" id="intro-visual"></div>
+                <h1 id="intro-title" class="stagger-item"></h1>
+                <p id="intro-text" class="subtitle stagger-item"></p>
+                <button class="btn-primary stagger-item" type="button" onclick="startGame()">
+                    <span id="intro-btn-text">EMPEZAR</span>
+                    <div class="btn-glow" aria-hidden="true"></div>
+                </button>
+            </main>
+        </section>
+
+        <!-- PREGUNTAS -->
+        <section id="screen-question" class="screen" aria-label="Preguntas">
+            <header class="header-compact">
+                <button class="logo-button logo-button-small logo-button-question" type="button" onclick="resetGame()" aria-label="Volver al inicio">
+                    <img src="assets/images/logo.png" alt="KRUPS" class="logo-img small">
+                </button>
+
+                <div class="progress-container">
+                    <div class="progress-info">
+                        PREGUNTA <span id="current-question-num">1</span> DE 4
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill">
+                            <div class="progress-glow"></div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <main class="question-content" id="question-content">
+                <h2 id="question-text" class="question-title"></h2>
+                <div id="answers-grid" class="answers-grid"></div>
+            </main>
+        </section>
+
+        <!-- TRANSICIÓN / REVEAL -->
+        <section id="screen-loading" class="screen" aria-label="Descubriendo resultado">
+            <header class="screen-nav-header">
+                <button class="logo-button logo-button-small" type="button" onclick="resetGame()" aria-label="Volver al inicio">
+                    <img src="assets/images/logo.png" alt="KRUPS" class="logo-img small">
+                </button>
+            </header>
+
+            <main class="loading-content">
+                <div class="mystery-loader-stage" aria-hidden="true">
+                    <div class="mystery-loader-glow"></div>
+                    <img src="assets/images/tazamisterio.png" alt="" class="mystery-loader-image">
+                    <div class="loader-ring loader-ring-1"></div>
+                    <div class="loader-ring loader-ring-2"></div>
+                </div>
+                <h2 id="loading-text" class="glowing-text">DESCUBRIENDO TU MATCH...</h2>
+                <p class="loading-subtext">Tu bebida está a punto de revelarse.</p>
+            </main>
+        </section>
+
+        <!-- RESULTADO -->
+        <section id="screen-result" class="screen" aria-label="Resultado">
+            <div class="result-ambient" id="result-ambient"></div>
+
+            <header class="screen-nav-header result-nav-header">
+                <button class="logo-button logo-button-small" type="button" onclick="resetGame()" aria-label="Volver al inicio">
+                    <img src="assets/images/logo.png" alt="KRUPS" class="logo-img small">
+                </button>
+            </header>
+
+            <main class="result-content">
+                <div class="result-visual-stage seq-1">
+                    <div class="result-glow" id="result-glow"></div>
+                    <div class="result-image-wrapper">
+                        <img id="result-image" src="" alt="Bebida resultado">
+                    </div>
+                </div>
+
+                <h1 id="result-title" class="result-title seq-2"></h1>
+                <p id="result-description" class="result-desc seq-3"></p>
+
+                <p class="staff-instruction seq-4"><strong>Muéstrale esta pantalla al equipo KRUPS<br>y disfruta tu bebida.</p></strong>
+
+                <button id="btn-claim" class="btn-claim seq-5" type="button" onclick="claimDrink()">
+                    <span id="btn-claim-text">QUIERO MI BEBIDA</span>
+                    <div class="btn-glow" aria-hidden="true"></div>
+                </button>
+
+                <button class="btn-secondary seq-6" type="button" onclick="resetGame()">JUGAR DE NUEVO</button>
+            </main>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
