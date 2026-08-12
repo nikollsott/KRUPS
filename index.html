@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#120E0C">
-    <title>KRUPS - Descubre tu Match</title>
-    <link rel="icon" type="image/png" href="assets/images/krups.png">
+    <title>KRUPS</title>
+    <link rel="icon" type="image/png" href="assets/images/logo.png">
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <div id="app-container">
         <div class="ambient-bg" aria-hidden="true">
@@ -24,15 +26,65 @@
             </button>
         </section>
 
+        <!-- MODAL: DATOS + AVISO DE COOKIES -->
+        <div id="lead-modal" class="modal-overlay" role="dialog" aria-modal="true"
+            aria-label="Registro y aviso de cookies">
+            <div class="modal-card">
+                <h2 class="modal-title">ANTES DE EMPEZAR</h2>
+                <p class="modal-subtitle">Cuéntanos quién eres para enviarte tu resultado.</p>
+
+                <form id="lead-form" class="lead-form" novalidate>
+                    <div class="form-field">
+                        <label for="field-name">Nombre completo</label>
+                        <input type="text" id="field-name" name="name" autocomplete="name" maxlength="80"
+                            placeholder="Tu nombre" required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="field-email">Correo electrónico</label>
+                        <input type="email" id="field-email" name="email" autocomplete="email" maxlength="120"
+                            placeholder="tucorreo@ejemplo.com" required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="field-phone">Teléfono</label>
+                        <input type="tel" id="field-phone" name="phone" autocomplete="tel" inputmode="numeric"
+                            maxlength="20" pattern="[0-9+\s]{7,20}" placeholder="300 000 0000" required>
+                    </div>
+
+                    <div class="cookie-notice">
+                        <p class="cookie-notice-text">
+                            Autorizo de manera previa, expresa e informada a Grupo Alcubo para que recolecte, almacene,
+                            use y circule mis datos personales con la finalidad de gestionar contactos, enviar ofertas o
+                            procesar compras. Conozco que puedo ejercer mis derechos a conocer, actualizar, rectificar o
+                            suprimir mi información."
+                        </p>
+                        <label class="cookie-consent-check">
+                            <input type="checkbox" id="field-consent" name="consent" required>
+                            <span>Acepto el uso de cookies y el tratamiento de mis datos personales.</span>
+                        </label>
+                    </div>
+
+                    <p id="form-error" class="form-error" role="alert" aria-live="polite"></p>
+
+                    <button class="btn-primary" type="submit" id="form-submit-btn">
+                        <span id="form-submit-text">GUARDAR</span>
+                        <div class="btn-glow" aria-hidden="true"></div>
+                    </button>
+                </form>
+            </div>
+        </div>
+
         <!-- HOME -->
         <section id="screen-home" class="screen" aria-label="Inicio">
             <div class="hero-bg" aria-hidden="true">
-                <img src="assets/images/coffee-hero.png" alt="" class="hero-image">
+                <img src="assets/images/bloqueo.png" alt="" class="hero-image">
                 <div class="hero-overlay"></div>
             </div>
 
             <header>
-                <button class="logo-button logo-button-home" type="button" onclick="resetGame()" aria-label="Volver al inicio">
+                <button class="logo-button logo-button-home" type="button" onclick="resetGame()"
+                    aria-label="Volver al inicio">
                     <img src="assets/images/logo.png" alt="KRUPS" class="logo-img">
                 </button>
             </header>
@@ -57,7 +109,7 @@
 
                     <button class="mode-card premium-card" type="button" onclick="selectGameMode('person')">
                         <div class="card-bg">
-                            <img src="assets/images/coffee-hero.png" alt="" class="card-image">
+                            <img src="assets/images/bloqueo.png" alt="" class="card-image">
                             <div class="card-gradient"></div>
                         </div>
                         <div class="card-content">
@@ -71,12 +123,13 @@
         <!-- INTRO -->
         <section id="screen-intro" class="screen" aria-label="Introducción">
             <div class="intro-bg" aria-hidden="true">
-                <img id="intro-bg-image" src="assets/images/coffee-hero.png" alt="" class="intro-bg-image">
+                <img id="intro-bg-image" src="assets/images/bloqueo.png" alt="" class="intro-bg-image">
                 <div class="intro-overlay"></div>
             </div>
 
             <header class="screen-nav-header">
-                <button class="logo-button logo-button-small" type="button" onclick="resetGame()" aria-label="Volver al inicio">
+                <button class="logo-button logo-button-small" type="button" onclick="resetGame()"
+                    aria-label="Volver al inicio">
                     <img src="assets/images/logo.png" alt="KRUPS" class="logo-img small">
                 </button>
             </header>
@@ -95,7 +148,8 @@
         <!-- PREGUNTAS -->
         <section id="screen-question" class="screen" aria-label="Preguntas">
             <header class="header-compact">
-                <button class="logo-button logo-button-small logo-button-question" type="button" onclick="resetGame()" aria-label="Volver al inicio">
+                <button class="logo-button logo-button-small logo-button-question" type="button" onclick="resetGame()"
+                    aria-label="Volver al inicio">
                     <img src="assets/images/logo.png" alt="KRUPS" class="logo-img small">
                 </button>
 
@@ -120,7 +174,8 @@
         <!-- TRANSICIÓN / REVEAL -->
         <section id="screen-loading" class="screen" aria-label="Descubriendo resultado">
             <header class="screen-nav-header">
-                <button class="logo-button logo-button-small" type="button" onclick="resetGame()" aria-label="Volver al inicio">
+                <button class="logo-button logo-button-small" type="button" onclick="resetGame()"
+                    aria-label="Volver al inicio">
                     <img src="assets/images/logo.png" alt="KRUPS" class="logo-img small">
                 </button>
             </header>
@@ -142,7 +197,8 @@
             <div class="result-ambient" id="result-ambient"></div>
 
             <header class="screen-nav-header result-nav-header">
-                <button class="logo-button logo-button-small" type="button" onclick="resetGame()" aria-label="Volver al inicio">
+                <button class="logo-button logo-button-small" type="button" onclick="resetGame()"
+                    aria-label="Volver al inicio">
                     <img src="assets/images/logo.png" alt="KRUPS" class="logo-img small">
                 </button>
             </header>
@@ -158,7 +214,8 @@
                 <h1 id="result-title" class="result-title seq-2"></h1>
                 <p id="result-description" class="result-desc seq-3"></p>
 
-                <p class="staff-instruction seq-4"><strong>Muéstrale esta pantalla al equipo KRUPS<br>y disfruta tu bebida.</p></strong>
+                <p class="staff-instruction seq-4"><strong>Muéstrale esta pantalla al equipo KRUPS<br>y disfruta tu
+                        bebida.</p></strong>
 
                 <button id="btn-claim" class="btn-claim seq-5" type="button" onclick="claimDrink()">
                     <span id="btn-claim-text">QUIERO MI BEBIDA</span>
@@ -172,4 +229,5 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>
