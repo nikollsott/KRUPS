@@ -187,9 +187,7 @@ function sendLeadData(action, payload) {
         return;
     }
 
-    // "no-cors" + text/plain evita el preflight CORS que Apps Script no responde.
-    // No podemos leer la respuesta, pero no la necesitamos (envío en segundo plano,
-    // no debe bloquear ni retrasar la experiencia de quien está jugando).
+   
     fetch(LEAD_ENDPOINT_URL, {
         method: 'POST',
         mode: 'no-cors',
