@@ -176,6 +176,30 @@ const ANSWER_TRANSITION_MS = 560;
 const REVEAL_DELAY_MS = 2500;
 const LOCK_TRANSITION_MS = 650;
 
+
+
+const LEAD_ENDPOINT_URL = 'https://script.google.com/macros/s/AKfycbzKcOcXybxMrLeXp-1ExN21SYa1oP8nVWlE3jV-JfckBuBabMdqOOoYAF0eQHcpg1t8gg/exec';
+const LEAD_ENDPOINT_TOKEN = 'KRUPSALCUBO-2026';
+
+function sendLeadData(action, payload) {
+    if (!LEAD_ENDPOINT_URL || LEAD_ENDPOINT_URL.startsWith('PEGA_AQUI')) {
+        console.warn('LEAD_ENDPOINT_URL no está configurado todavía. No se envió:', action, payload);
+        return;
+    }
+
+    // "no-cors" + text/plain evita el preflight CORS que Apps Script no responde.
+    // No podemos leer la respuesta, pero no la necesitamos (envío en segundo plano,
+    // no debe bloquear ni retrasar la experiencia de quien está jugando).
+    fetch(LEAD_ENDPOINT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({ token: LEAD_ENDPOINT_TOKEN, action, ...payload })
+    }).catch(error => {
+        console.error('No se pudo enviar la información al backend:', error);
+    });
+}
+
 let gameState = {
     mode: null,
     currentQuestionIndex: 0,
@@ -185,7 +209,8 @@ let gameState = {
     inactivityTimer: null,
     revealTimer: null,
     isProcessingAnswer: false,
-    activeScreen: 'home'
+    activeScreen: 'home',
+    leadData: { name: '', email: '', phone: '' }
 };
 
 const screens = {
@@ -196,6 +221,16 @@ const screens = {
     loading: document.getElementById('screen-loading'),
     result: document.getElementById('screen-result')
 };
+
+const leadModal = document.getElementById('lead-modal');
+
+function showLeadModal() {
+    if (leadModal) leadModal.classList.add('visible');
+}
+
+function hideLeadModal() {
+    if (leadModal) leadModal.classList.remove('visible');
+}
 
 // Modo kiosk: evitar acciones accidentales del navegador.
 document.addEventListener('contextmenu', event => event.preventDefault());
@@ -237,10 +272,80 @@ function unlockScreen() {
     homeScreen.classList.add('active');
     lockScreen.classList.add('unlocking');
 
+    // OJO: "unlocking" se deja puesto a propósito (no se quita aquí). Si se
+    // quitara ahora, al mismo tiempo que showScreen() le retira "active",
+    // el navegador animaría el regreso a su posición normal (transform)
+    // mientras se desvanece (opacity), y por un instante volvería a verse
+    // encima del home. Se limpia de forma controlada en resetGame().
     setTimeout(() => {
-        lockScreen.classList.remove('unlocking');
         showScreen('home');
+        // El modal de datos/cookies bloquea el menú hasta que se guarde.
+        showLeadModal();
     }, LOCK_TRANSITION_MS);
+}
+
+function resetLockScreenTransform() {
+    const lockScreen = screens.lock;
+    if (!lockScreen) return;
+
+    // Quita el desplazamiento sin animar (para no ver un "slide-down" no
+    // deseado) y fuerza un reflow antes de permitir transiciones de nuevo.
+    lockScreen.classList.add('no-transition');
+    lockScreen.classList.remove('unlocking');
+    void lockScreen.offsetWidth;
+    lockScreen.classList.remove('no-transition');
+}
+
+function handleLeadFormSubmit(event) {
+    event.preventDefault();
+
+    const form = event.target;
+    const nameInput = document.getElementById('field-name');
+    const emailInput = document.getElementById('field-email');
+    const phoneInput = document.getElementById('field-phone');
+    const consentInput = document.getElementById('field-consent');
+    const errorEl = document.getElementById('form-error');
+
+    [nameInput, emailInput, phoneInput, consentInput].forEach(input => input.classList.add('touched'));
+
+    if (!form.checkValidity()) {
+        errorEl.textContent = consentInput.checkValidity()
+            ? 'Revisa que el nombre, correo y teléfono estén completos y sean válidos.'
+            : 'Debes aceptar el uso de cookies y el tratamiento de datos para continuar.';
+        return;
+    }
+
+    errorEl.textContent = '';
+
+    gameState.leadData = {
+        name: nameInput.value.trim(),
+        email: emailInput.value.trim(),
+        phone: phoneInput.value.trim()
+    };
+
+    sendLeadData('register', gameState.leadData);
+
+    resetInactivityTimer();
+    hideLeadModal();
+}
+
+function resetLeadForm() {
+    const form = document.getElementById('lead-form');
+    if (!form) return;
+
+    form.reset();
+    ['field-name', 'field-email', 'field-phone', 'field-consent'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.classList.remove('touched');
+    });
+
+    const errorEl = document.getElementById('form-error');
+    if (errorEl) errorEl.textContent = '';
+
+    const submitBtn = document.getElementById('form-submit-btn');
+    if (submitBtn) submitBtn.disabled = false;
+
+    hideLeadModal();
 }
 
 function selectGameMode(mode) {
@@ -254,7 +359,7 @@ function selectGameMode(mode) {
     if (introBg) {
         introBg.src = mode === 'pet'
             ? 'assets/images/pet.png'
-            : 'assets/images/coffee-hero.png';
+            : 'assets/images/bloqueo.png';
     }
 
     document.getElementById('intro-visual').innerHTML = `
@@ -421,6 +526,23 @@ function claimDrink() {
         btn.classList.add('claimed');
         btn.style.backgroundColor = 'var(--brand-accent)';
         btn.style.color = 'var(--brand-primary)';
+
+        const resultData = gameState.mode && gameState.finalResult
+            ? gameData[gameState.mode].results[gameState.finalResult]
+            : null;
+
+        if (resultData && gameState.leadData.email) {
+            sendLeadData('sendResult', {
+                name: gameState.leadData.name,
+                email: gameState.leadData.email,
+                phone: gameState.leadData.phone,
+                mode: gameState.mode,
+                resultCode: gameState.finalResult,
+                resultTitle: resultData.title,
+                resultDescription: resultData.description,
+                rewardText: resultData.rewardText
+            });
+        }
     }
     resetInactivityTimer();
 }
@@ -434,11 +556,15 @@ function resetGame() {
     gameState.selectedAnswers = [];
     gameState.finalResult = null;
     gameState.isProcessingAnswer = false;
+    gameState.leadData = { name: '', email: '', phone: '' };
 
     const questionContent = document.getElementById('question-content');
     if (questionContent) {
         questionContent.classList.remove('question-leaving', 'question-entering');
     }
+
+    resetLeadForm();
+    resetLockScreenTransform();
 
     showScreen('lock');
 }
@@ -459,6 +585,16 @@ function resetInactivityTimer() {
 // Cualquier interacción real durante el juego mantiene viva la sesión.
 ['pointerdown', 'touchstart', 'keydown'].forEach(eventName => {
     document.addEventListener(eventName, resetInactivityTimer, { passive: true });
+});
+
+// Formulario de datos: valida y envía al perder el foco / al enviar.
+const leadForm = document.getElementById('lead-form');
+if (leadForm) {
+    leadForm.addEventListener('submit', handleLeadFormSubmit);
+}
+['field-name', 'field-email', 'field-phone', 'field-consent'].forEach(id => {
+    const field = document.getElementById(id);
+    if (field) field.addEventListener('blur', () => field.classList.add('touched'));
 });
 
 // Estado inicial consistente incluso después de un refresh del navegador.
