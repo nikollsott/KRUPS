@@ -1894,3 +1894,106 @@ h2 {
         top: 14px;
     }
 }
+
+/* ----------------------------------
+   Modal — Tablet vertical (≤ 768 px de ancho)
+   Reduce padding y espacios para que el formulario
+   entre cómodamente sin necesitar scroll en la mayoría
+   de tablets en posición vertical.
+---------------------------------- */
+@media (max-width: 768px) {
+    .modal-overlay {
+        padding: 16px;
+    }
+
+    .modal-card {
+        padding: 28px 22px;
+        max-height: 92vh;
+    }
+
+    .lead-form {
+        gap: 12px;
+    }
+
+    .form-field input {
+        padding: 14px 16px;
+    }
+
+    .cookie-notice-text {
+        margin-bottom: 10px;
+    }
+
+    .cookie-consent-check {
+        gap: 8px;
+    }
+
+    .modal-card .btn-primary {
+        min-width: 180px;
+        margin-top: 4px;
+    }
+}
+
+/* ----------------------------------
+   Modal — Tablet horizontal con altura limitada
+   (≤ 760 px de alto en landscape).
+   Mismo breakpoint que el resto del proyecto usa para
+   este escenario. Compacta el formulario verticalmente
+   para que quepa sin scroll y los campos sigan siendo
+   cómodos de tocar (mín. 44 px de área táctil).
+---------------------------------- */
+@media (max-height: 760px) and (orientation: landscape) {
+    .modal-overlay {
+        padding: 12px 20px;
+        align-items: center;
+    }
+
+    .modal-card {
+        padding: 20px 24px;
+        max-height: 88vh;
+        max-width: 520px;
+    }
+
+    .modal-title {
+        font-size: clamp(22px, 3.2vw, 30px);
+        margin-bottom: 2px;
+    }
+
+    .modal-subtitle {
+        font-size: 15px;
+        margin-bottom: 12px;
+    }
+
+    .lead-form {
+        gap: 10px;
+    }
+
+    .form-field input {
+        padding: 11px 15px;
+        font-size: 15px;
+    }
+
+    .cookie-notice {
+        padding: 10px 14px;
+    }
+
+    .cookie-notice-text {
+        font-size: 11px;
+        margin-bottom: 8px;
+    }
+
+    .cookie-consent-check {
+        font-size: 11px;
+        gap: 8px;
+    }
+
+    .cookie-consent-check input {
+        width: 16px;
+        height: 16px;
+        flex: 0 0 16px;
+    }
+
+    .modal-card .btn-primary {
+        min-width: 160px;
+        margin-top: 2px;
+    }
+}
