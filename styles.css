@@ -240,7 +240,7 @@ body {
     max-width: 460px;
     max-height: 90vh;
     overflow-y: auto;
-    background: var(--brand-primary);
+    background: #150d0912;
     border: 1px solid var(--border-subtle);
     border-radius: var(--border-radius-lg);
     padding: 36px 32px;
