@@ -9,77 +9,98 @@ const gameData = {
         introImage: "assets/images/tazamisterio.png",
         questions: [
             {
-                question: "¿Cómo arrancas el día?",
+                question: "Cuando algo pasa de repente…",
                 answers: [
-                    { text: "Con toda", result: "ESP" },
-                    { text: "A mi ritmo", result: "AME" },
-                    { text: "Con buena vibra", result: "FRU" },
-                    { text: "Sin correr", result: "MAT" }
+                    { text: "Reacciono de una", result: "ESP" },
+                    { text: "Observo primero", result: "FIL" },
+                    { text: "Me adapto y sigo", result: "CB" },
+                    { text: "Veo si me siento bien", result: "ORA" },
+                    { text: "Le saco el lado divertido", result: "SOD" },
+                    { text: "Mantengo la calma", result: "TON" }
                 ]
             },
             {
-                question: "Tu plan ideal es…",
+                question: "Tu plan perfecto es…",
                 answers: [
-                    { text: "Algo con adrenalina", result: "ESP" },
-                    { text: "Charlar sin afán", result: "AME" },
-                    { text: "Probar algo nuevo", result: "FRU" },
-                    { text: "Desconectarme", result: "MAT" }
+                    { text: "Algo intenso", result: "ESP" },
+                    { text: "Mi lugar favorito", result: "FIL" },
+                    { text: "Salir a explorar", result: "CB" },
+                    { text: "Cozy, pero a mi manera", result: "ORA" },
+                    { text: "Gente, risas y plan", result: "SOD" },
+                    { text: "Algo cool y tranquilo", result: "TON" }
                 ]
             },
             {
-                question: "En tu grupo eres quien…",
+                question: "En un grupo nuevo tú…",
                 answers: [
-                    { text: "Mueve el parche", result: "ESP" },
-                    { text: "Siempre resuelve", result: "AME" },
-                    { text: "Prende el plan", result: "FRU" },
-                    { text: "Baja revoluciones", result: "MAT" }
+                    { text: "Entro con toda", result: "ESP" },
+                    { text: "Primero observo", result: "FIL" },
+                    { text: "Me integro fácil", result: "CB" },
+                    { text: "Conecto si hay química", result: "ORA" },
+                    { text: "Hablo con todo el mundo", result: "SOD" },
+                    { text: "Pocas palabras, mucha presencia", result: "TON" }
                 ]
             },
             {
                 question: "Tu vibe es más…",
                 answers: [
-                    { text: "Intensa", result: "ESP" },
-                    { text: "Auténtica", result: "AME" },
-                    { text: "Espontánea", result: "FRU" },
-                    { text: "Equilibrada", result: "MAT" }
+                    { text: "Impulsiva", result: "ESP" },
+                    { text: "Auténtica", result: "FIL" },
+                    { text: "Activa pero chill", result: "CB" },
+                    { text: "Dulce con carácter", result: "ORA" },
+                    { text: "Social y juguetona", result: "SOD" },
+                    { text: "Intensa y elegante", result: "TON" }
                 ]
             }
         ],
         results: {
             ESP: {
                 title: "ERES ESPRESSO",
-                description: "Intenso, directo y con energía para rato. Si algo va a pasar, probablemente tú lo empiezas.",
-                rewardText: "HOY TE TOCA UN ESPRESSO",
+                description: "Vas directo, reaccionas rápido y vives las cosas con intensidad. Cuando quieres algo, se nota.",
+                rewardText: "Hoy tu match es un Espresso.",
                 claimBtnText: "QUIERO MI ESPRESSO",
                 color: "var(--espresso-color)",
                 image: "assets/images/espresso.png"
             },
-            AME: {
-                title: "ERES AMERICANO",
-                description: "Auténtico, relajado y confiable. Te gustan las cosas claras y los buenos momentos sin complicaciones.",
-                rewardText: "HOY TE TOCA UN AMERICANO",
-                claimBtnText: "QUIERO MI AMERICANO",
-                color: "var(--americano-color)",
-                image: "assets/images/americano.png"
+            FIL: {
+                title: "ERES CAFÉ FILTRADO",
+                description: "Seguro, auténtico y muy tú. Observas antes de actuar y sabes perfectamente cuál es tu espacio.",
+                rewardText: "Hoy tu match es un Café Filtrado.",
+                claimBtnText: "QUIERO MI FILTRADO",
+                color: "var(--filtrado-color)",
+                image: "assets/images/filtrado.png"
             },
-
-
-
-            FRU: {
-                title: "ERES TÉ FRUTAL",
-                description: "Espontáneo, curioso y siempre abierto a algo nuevo. Tu energía le pone sabor al plan.",
-                rewardText: "HOY TE TOCA UN TÉ FRUTAL",
-                claimBtnText: "QUIERO MI TÉ FRUTAL",
-                color: "var(--frutal-color)",
-                image: "assets/images/te-frutal.png"
+            CB: {
+                title: "ERES COLD BREW",
+                description: "Tranquilo, activo y siempre listo para un buen plan. Tienes energía, pero también sabes cuándo bajarle.",
+                rewardText: "Hoy tu match es un Cold Brew.",
+                claimBtnText: "QUIERO MI COLD BREW",
+                color: "var(--coldbrew-color)",
+                image: "assets/images/coldbrew.png"
             },
-            MAT: {
-                title: "ERES MATCHA",
-                description: "Tranquilo, observador y equilibrado. Sabes cuándo moverte y cuándo simplemente disfrutar.",
-                rewardText: "HOY TE TOCA UN MATCHA",
-                claimBtnText: "QUIERO MI MATCHA",
-                color: "var(--matcha-color)",
-                image: "assets/images/matcha.png"
+            ORA: {
+                title: "ERES COFFEE ORANGE",
+                description: "Dulce, cercano y con personalidad. Das mucho, pero también sabes decir: “hasta aquí”.",
+                rewardText: "Hoy tu match es un Coffee Orange.",
+                claimBtnText: "QUIERO MI COFFEE ORANGE",
+                color: "var(--orange-color)",
+                image: "assets/images/orange.png"
+            },
+            SOD: {
+                title: "ERES COFFEE SODA",
+                description: "Fresco, juguetón y social. Llegas a un lugar nuevo y en cinco minutos ya conoces a alguien.",
+                rewardText: "Hoy tu match es un Coffee Soda.",
+                claimBtnText: "QUIERO MI COFFEE SODA",
+                color: "var(--soda-color)",
+                image: "assets/images/soda.png"
+            },
+            TON: {
+                title: "ERES ESPRESSO TONIC",
+                description: "Intenso, despierto e independiente. Tienes carácter y una presencia que no necesita presentación.",
+                rewardText: "Hoy tu match es un Espresso Tonic.",
+                claimBtnText: "QUIERO MI ESPRESSO TONIC",
+                color: "var(--tonic-color)",
+                image: "assets/images/tonic.png"
             }
         }
     },
@@ -94,74 +115,98 @@ const gameData = {
         introImage: "assets/images/tazamisterio.png",
         questions: [
             {
-                question: "¿Cómo arranca su día?",
+                question: "¿Algo le llama la atención y…?",
                 answers: [
-                    { text: "A mil por hora", result: "ESP" },
-                    { text: "Tranqui, sin afán", result: "AME" },
-                    { text: "Listo para jugar", result: "FRU" },
-                    { text: "Primero observa", result: "MAT" }
+                    { text: "Reacciona de una", result: "ESP" },
+                    { text: "Mira antes de moverse", result: "FIL" },
+                    { text: "Va a explorar", result: "CB" },
+                    { text: "Se acerca… si quiere", result: "ORA" },
+                    { text: "Va a saludar", result: "SOD" },
+                    { text: "Observa sin hacer ruido", result: "TON" }
                 ]
             },
             {
-                question: "Su plan favorito es…",
+                question: "Su plan favorito sería…",
                 answers: [
-                    { text: "Correr y explorar", result: "ESP" },
-                    { text: "Pasear contigo", result: "AME" },
-                    { text: "Jugar sin parar", result: "FRU" },
-                    { text: "Relax total", result: "MAT" }
+                    { text: "Acción, ya", result: "ESP" },
+                    { text: "Su lugar, su calma", result: "FIL" },
+                    { text: "Pasear y explorar", result: "CB" },
+                    { text: "Mimos + su espacio", result: "ORA" },
+                    { text: "Parque y nuevos amigos", result: "SOD" },
+                    { text: "Salir y mirar todo", result: "TON" }
                 ]
             },
             {
-                question: "Con gente nueva…",
+                question: "Con alguien nuevo…",
                 answers: [
-                    { text: "Llega con toda", result: "ESP" },
-                    { text: "Primero tantea", result: "AME" },
-                    { text: "Se hace amigo de todos", result: "FRU" },
-                    { text: "Conecta a su ritmo", result: "MAT" }
+                    { text: "Se hace notar", result: "ESP" },
+                    { text: "Primero lo analiza", result: "FIL" },
+                    { text: "Se acerca tranquilo", result: "CB" },
+                    { text: "Cariño… con límites", result: "ORA" },
+                    { text: "Ya quiere ser su amigo", result: "SOD" },
+                    { text: "Mira, mide y decide", result: "TON" }
                 ]
             },
             {
-                question: "Tu peludo es más…",
+                question: "Su vibe es más…",
                 answers: [
-                    { text: "Intenso", result: "ESP" },
-                    { text: "Fiel", result: "AME" },
-                    { text: "Juguetón", result: "FRU" },
-                    { text: "Sereno", result: "MAT" }
+                    { text: "Explosivo", result: "ESP" },
+                    { text: "Seguro", result: "FIL" },
+                    { text: "Aventurero", result: "CB" },
+                    { text: " Tierno con carácter", result: "ORA" },
+                    { text: " Súper social", result: "SOD" },
+                    { text: " Intenso y elegante", result: "TON" }
                 ]
             }
         ],
         results: {
             ESP: {
-                title: "TU PELUDO ES ESPRESSO",
-                description: "Pequeño o grande, viene con energía extra. Intenso, directo y siempre listo para la acción.",
-                rewardText: "TE GANASTE UN ESPRESSO",
+                title: "TU PELUDO ES PURO ESPRESSO",
+                description: "Intenso, impulsivo y cero filtro. Siente todo al máximo y reacciona igual de rápido.",
+                rewardText: "Te ganaste un Espresso.",
                 claimBtnText: "QUIERO MI ESPRESSO",
                 color: "var(--espresso-color)",
                 image: "assets/images/espresso.png"
             },
-            AME: {
-                title: "TU PELUDO ES AMERICANO",
-                description: "Relajado, fiel y cero complicado. Siempre está ahí para acompañarte.",
-                rewardText: "TE GANASTE UN AMERICANO",
-                claimBtnText: "QUIERO MI AMERICANO",
-                color: "var(--americano-color)",
-                image: "assets/images/americano.png"
+            FIL: {
+                title: "TU PELUDO ES CAFÉ FILTRADO",
+                description: "Seguro, observador y muy auténtico. Sabe cuál es su espacio y no necesita demostrar nada.",
+                rewardText: "Te ganaste un Café Filtrado.",
+                claimBtnText: "QUIERO MI FILTRADO",
+                color: "var(--filtrado-color)",
+                image: "assets/images/filtrado.png"
             },
-            FRU: {
-                title: "TU PELUDO ES TÉ FRUTAL",
-                description: "Curioso, alegre y un poquito impredecible. Donde llega, pasa algo.",
-                rewardText: "TE GANASTE UN TÉ FRUTAL",
-                claimBtnText: "QUIERO MI TÉ FRUTAL",
-                color: "var(--frutal-color)",
-                image: "assets/images/te-frutal.png"
+            CB: {
+                title: "TU PELUDO ES COLD BREW",
+                description: "Tranqui, pero siempre listo para el próximo plan. Explora, juega y también sabe cuándo bajar revoluciones.",
+                rewardText: "Te ganaste un Cold Brew.",
+                claimBtnText: "QUIERO MI COLD BREW",
+                color: "var(--coldbrew-color)",
+                image: "assets/images/coldbrew.png"
             },
-            MAT: {
-                title: "TU PELUDO ES MATCHA",
-                description: "Observador, tranquilo y con muy buena energía. Va a su ritmo y sabe disfrutar.",
-                rewardText: "TE GANASTE UN MATCHA",
-                claimBtnText: "QUIERO MI MATCHA",
-                color: "var(--matcha-color)",
-                image: "assets/images/matcha.png"
+            ORA: {
+                title: "TU PELUDO ES COFFEE ORANGE",
+                description: "Dulce y cariñoso, pero con carácter. Da amor cuando quiere y sabe perfectamente dónde están sus límites.",
+                rewardText: "Te ganaste un Coffee Orange.",
+                claimBtnText: "QUIERO MI COFFEE ORANGE",
+                color: "var(--orange-color)",
+                image: "assets/images/orange.png"
+            },
+            SOD: {
+                title: "TU PELUDO ES COFFEE SODA",
+                description: "Fresco, juguetón y súper sociable. Ve un desconocido y ya está pensando: “nuevo amigo”.",
+                rewardText: "Te ganaste un Coffee Soda.",
+                claimBtnText: "QUIERO MI COFFEE SODA",
+                color: "var(--soda-color)",
+                image: "assets/images/soda.png"
+            },
+            TON: {
+                title: "TU PELUDO ES ESPRESSO TONIC",
+                description: "Intenso, independiente y siempre alerta. Tiene presencia sin necesidad de hacer mucho ruido.",
+                rewardText: "Te ganaste un Espresso Tonic.",
+                claimBtnText: "QUIERO MI ESPRESSO TONIC",
+                color: "var(--tonic-color)",
+                image: "assets/images/tonic.png"
             }
         }
     }
@@ -201,7 +246,7 @@ function sendLeadData(action, payload) {
 let gameState = {
     mode: null,
     currentQuestionIndex: 0,
-    scores: { ESP: 0, AME: 0, FRU: 0, MAT: 0 },
+    scores: { ESP: 0, FIL: 0, CB: 0, ORA: 0, SOD: 0, TON: 0 },
     selectedAnswers: [],
     finalResult: null,
     inactivityTimer: null,
@@ -376,7 +421,7 @@ function startGame() {
     clearTimeout(gameState.revealTimer);
     gameState.revealTimer = null;
     gameState.currentQuestionIndex = 0;
-    gameState.scores = { ESP: 0, AME: 0, FRU: 0, MAT: 0 };
+    gameState.scores = { ESP: 0, FIL: 0, CB: 0, ORA: 0, SOD: 0, TON: 0 };
     gameState.selectedAnswers = [];
     gameState.finalResult = null;
     gameState.isProcessingAnswer = false;
@@ -550,7 +595,7 @@ function resetGame() {
 
     gameState.mode = null;
     gameState.currentQuestionIndex = 0;
-    gameState.scores = { ESP: 0, AME: 0, FRU: 0, MAT: 0 };
+    gameState.scores = { ESP: 0, FIL: 0, CB: 0, ORA: 0, SOD: 0, TON: 0 };
     gameState.selectedAnswers = [];
     gameState.finalResult = null;
     gameState.isProcessingAnswer = false;
@@ -585,7 +630,6 @@ function resetInactivityTimer() {
     document.addEventListener(eventName, resetInactivityTimer, { passive: true });
 });
 
-// Formulario de datos: valida y envía al perder el foco / al enviar.
 const leadForm = document.getElementById('lead-form');
 if (leadForm) {
     leadForm.addEventListener('submit', handleLeadFormSubmit);
@@ -595,5 +639,4 @@ if (leadForm) {
     if (field) field.addEventListener('blur', () => field.classList.add('touched'));
 });
 
-// Estado inicial consistente incluso después de un refresh del navegador.
 showScreen('lock');
