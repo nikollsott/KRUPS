@@ -13,7 +13,7 @@
     --coldbrew-color: #4A3831;
     --orange-color: #ee9446;
     --soda-color: #4a2018;
-    --tonic-color: #7c5d32;
+    --tonic-color: #8A5A1E;
 
     /* UI / Effects */
     --text-primary: #FFFFFF;
@@ -1274,12 +1274,12 @@ h2 {
 
 /* Paletas de resultado más cercanas a piezas publicitarias sólidas */
 :root {
-    --espresso-color: #3E2723;
-    --filtrado-color: #7B5B43;
-    --coldbrew-color: #2F3E46;
-    --orange-color: #E8743B;
-    --soda-color: #D6455D;
-    --tonic-color: #1B4B43;
+   --espresso-color: #3A2615;
+    --filtrado-color: #5C4632;
+    --coldbrew-color: #4A3831;
+    --orange-color: #ee9446;
+    --soda-color: #4a2018;
+    --tonic-color: #8A5A1E;
 }
 
 @media (max-height: 760px) and (orientation: landscape) {
