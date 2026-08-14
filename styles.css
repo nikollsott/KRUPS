@@ -1,20 +1,19 @@
 :root {
-    /* Brand Colors (Replaceable placeholders) */
     --brand-primary: #1F1916;
-    /* Deep espresso base */
     --brand-secondary: #F8F5F2;
-    /* Warm cream */
     --brand-accent: #D4AF37;
-    /* Warm gold */
+
 
     --background-dark: #120E0C;
     --background-light: #FAF8F5;
 
     /* Drink Colors */
-    --espresso-color: #3E2723;
-    --americano-color: #795548;
-    --frutal-color: #f07e58f4;
-    --matcha-color: #2E7D32;
+    --espresso-color: #3A2615;
+    --filtrado-color: #5C4632;
+    --coldbrew-color: #4A3831;
+    --orange-color: #ee9446;
+    --soda-color: #4a2018;
+    --tonic-color: #7c5d32;
 
     /* UI / Effects */
     --text-primary: #FFFFFF;
@@ -397,9 +396,7 @@ header {
     left: 30px;
 }
 
-.fallback-logo {
-    /* If img broken, css can show alt text elegantly, but script handles it */
-}
+
 
 main {
     flex: 1;
@@ -1278,9 +1275,11 @@ h2 {
 /* Paletas de resultado más cercanas a piezas publicitarias sólidas */
 :root {
     --espresso-color: #3E2723;
-    --americano-color: #795548;
-    --frutal-color: #f07e58f4;
-    --matcha-color: #2E7D32;
+    --filtrado-color: #7B5B43;
+    --coldbrew-color: #2F3E46;
+    --orange-color: #E8743B;
+    --soda-color: #D6455D;
+    --tonic-color: #1B4B43;
 }
 
 @media (max-height: 760px) and (orientation: landscape) {
